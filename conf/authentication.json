@@ -8,10 +8,10 @@
                 "keystoreType" : "&{openidm.keystore.type}",
                 "keystoreFile" : "&{openidm.keystore.location}",
                 "keystorePassword" : "&{openidm.keystore.password}",
-                "maxTokenLifeMinutes" : "120",
-                "tokenIdleTimeMinutes" : "30",
                 "sessionOnly" : true,
-                "isHttpOnly" : true
+                "isHttpOnly" : true,
+                "maxTokenLifeMinutes" : "1200",
+                "tokenIdleTimeMinutes" : "300"
             }
         },
         "authModules" : [
@@ -30,7 +30,7 @@
             {
                 "name" : "MANAGED_USER",
                 "properties" : {
-                    "augmentSecurityContext": {
+                    "augmentSecurityContext" : {
                         "type" : "text/javascript",
                         "source" : "require('auth/customAuthz').setProtectedAttributes(security)"
                     },
@@ -69,6 +69,23 @@
                     "allowedAuthenticationIdPatterns" : [ ]
                 },
                 "enabled" : true
+            },
+            {
+                "enabled" : true,
+                "properties" : {
+                    "defaultUserRoles" : [
+                        "openidm-authorized"
+                    ],
+                    "augmentSecurityContext" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "file" : "auth/populateAsManagedUserFromRelationship.js"
+                    },
+                    "propertyMapping" : {
+                        "userRoles" : "authzRoles"
+                    }
+                },
+                "name" : "SOCIAL_PROVIDERS"
             }
         ]
     }

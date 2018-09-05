@@ -1,0 +1,125 @@
+{
+    "name" : "google",
+    "type" : "OPENID_CONNECT",
+    "icon" : "<button class=\"btn btn-lg btn-default btn-block btn-social-provider btn-google\"><img src=\"images/g-logo.png\">{{action}} Google</button>",
+    "scope" : [
+        "openid",
+        "profile",
+        "email"
+    ],
+    "authenticationId" : "sub",
+    "propertyMap" : [
+        {
+            "source" : "sub",
+            "target" : "id"
+        },
+        {
+            "source" : "name",
+            "target" : "displayName"
+        },
+        {
+            "source" : "given_name",
+            "target" : "givenName"
+        },
+        {
+            "source" : "family_name",
+            "target" : "familyName"
+        },
+        {
+            "source" : "picture",
+            "target" : "photoUrl"
+        },
+        {
+            "source" : "email",
+            "target" : "email"
+        },
+        {
+            "source" : "email",
+            "target" : "username"
+        },
+        {
+            "source" : "locale",
+            "target" : "locale"
+        }
+    ],
+    "schema" : {
+        "id" : "http://jsonschema.net",
+        "title" : "Google",
+        "viewable" : true,
+        "type" : "object",
+        "$schema" : "http://json-schema.org/draft-03/schema",
+        "properties" : {
+            "sub" : {
+                "title" : "ID",
+                "viewable" : true,
+                "type" : "string",
+                "searchable" : true
+            },
+            "name" : {
+                "title" : "Name",
+                "viewable" : true,
+                "type" : "string",
+                "searchable" : true
+            },
+            "given_name" : {
+                "title" : "First Name",
+                "viewable" : true,
+                "type" : "string",
+                "searchable" : true
+            },
+            "family_name" : {
+                "title" : "Last Name",
+                "viewable" : true,
+                "type" : "string",
+                "searchable" : true
+            },
+            "picture" : {
+                "title" : "Profile Picture URL",
+                "viewable" : true,
+                "type" : "string",
+                "searchable" : true
+            },
+            "email" : {
+                "title" : "Email Address",
+                "viewable" : true,
+                "type" : "string",
+                "searchable" : true
+            },
+            "locale" : {
+                "title" : "Locale Code",
+                "viewable" : true,
+                "type" : "string",
+                "searchable" : true
+            }
+        },
+        "order" : [
+            "sub",
+            "name",
+            "given_name",
+            "family_name",
+            "picture",
+            "email",
+            "locale"
+        ],
+        "required" : [ ]
+    },
+    "enabled" : true,
+    "client_id" : "1002062373132-3gp3u6djkg2iehcijak4bfu4om0l1f4d.apps.googleusercontent.com",
+    "client_secret" : {
+        "$crypto" : {
+            "type" : "x-simple-encryption",
+            "value" : {
+                "cipher" : "AES/CBC/PKCS5Padding",
+                "salt" : "2H/hIxsLPGDMZJMM+b4H7g==",
+                "data" : "CpGjh/oy1o4l1wvIsN9x8+qyKUU0QS1sonJdCWAVJJI=",
+                "iv" : "gjkE/vpi8/3Siu3l0tgfmg==",
+                "key" : "openidm-sym-default",
+                "mac" : "KMjckJPDzA161ykSLe4j5g=="
+            }
+        }
+    },
+    "authorization_endpoint" : "https://accounts.google.com/o/oauth2/v2/auth",
+    "token_endpoint" : "https://www.googleapis.com/oauth2/v4/token",
+    "userinfo_endpoint" : "https://www.googleapis.com/oauth2/v3/userinfo",
+    "well-known" : "https://accounts.google.com/.well-known/openid-configuration"
+}

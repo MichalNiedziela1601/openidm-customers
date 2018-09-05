@@ -53,6 +53,14 @@
                         ],
                         "passwordLength" : 16
                     }
+                },
+                "unbind" : {
+                    "type" : "text/javascript",
+                    "file" : "ui/unBindBehavior.js"
+                },
+                "bind" : {
+                    "type" : "text/javascript",
+                    "file" : "ui/bindBehavior.js"
                 }
             },
             "schema" : {
@@ -685,6 +693,65 @@
                             "updates",
                             "marketing"
                         ]
+                    },
+                    "idps" : {
+                        "title" : "Identity Providers",
+                        "viewable" : true,
+                        "searchable" : false,
+                        "userEditable" : false,
+                        "returnByDefault" : false,
+                        "type" : "array",
+                        "items" : {
+                            "type" : "relationship",
+                            "reverseRelationship" : true,
+                            "reversePropertyName" : "user",
+                            "validate" : true,
+                            "properties" : {
+                                "_ref" : {
+                                    "type" : "string"
+                                },
+                                "_refProperties" : {
+                                    "type" : "object",
+                                    "properties" : { }
+                                }
+                            },
+                            "resourceCollection" : [
+                                {
+                                    "path" : "managed/google",
+                                    "label" : "google Info",
+                                    "query" : {
+                                        "queryFilter" : "true",
+                                        "fields" : [
+                                            "sub",
+                                            "name",
+                                            "given_name"
+                                        ],
+                                        "sortKeys" : [
+                                            "sub",
+                                            "name",
+                                            "given_name"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "path" : "managed/facebook",
+                                    "label" : "facebook Info",
+                                    "query" : {
+                                        "queryFilter" : "true",
+                                        "fields" : [
+                                            "id",
+                                            "name",
+                                            "first_name"
+                                        ],
+                                        "sortKeys" : [
+                                            "id",
+                                            "name",
+                                            "first_name"
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
                     }
                 },
                 "required" : [
@@ -716,7 +783,8 @@
                     "effectiveAssignments",
                     "lastSync",
                     "kbaInfo",
-                    "preferences"
+                    "preferences",
+                    "idps"
                 ]
             }
         },
@@ -1091,6 +1159,195 @@
                     "attributes",
                     "linkQualifiers"
                 ]
+            }
+        },
+        {
+            "name" : "google",
+            "title" : "google User Info",
+            "schema" : {
+                "title" : "Google",
+                "type" : "object",
+                "viewable" : true,
+                "properties" : {
+                    "user" : {
+                        "viewable" : true,
+                        "searchable" : false,
+                        "type" : "relationship",
+                        "reverseRelationship" : true,
+                        "reversePropertyName" : "idps",
+                        "validate" : true,
+                        "properties" : {
+                            "_ref" : {
+                                "type" : "string"
+                            },
+                            "_refProperties" : {
+                                "type" : "object",
+                                "properties" : { }
+                            }
+                        },
+                        "resourceCollection" : [
+                            {
+                                "path" : "managed/user",
+                                "label" : "User",
+                                "query" : {
+                                    "queryFilter" : "true",
+                                    "fields" : [
+                                        "userName"
+                                    ],
+                                    "sortKeys" : [
+                                        "userName"
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "sub" : {
+                        "title" : "ID",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    },
+                    "name" : {
+                        "title" : "Name",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    },
+                    "given_name" : {
+                        "title" : "First Name",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    },
+                    "family_name" : {
+                        "title" : "Last Name",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    },
+                    "picture" : {
+                        "title" : "Profile Picture URL",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    },
+                    "email" : {
+                        "title" : "Email Address",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    },
+                    "locale" : {
+                        "title" : "Locale Code",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    }
+                },
+                "order" : [
+                    "sub",
+                    "name",
+                    "given_name",
+                    "family_name",
+                    "picture",
+                    "email",
+                    "locale",
+                    "user"
+                ],
+                "id" : "http://jsonschema.net",
+                "$schema" : "http://json-schema.org/draft-03/schema",
+                "required" : [ ]
+            }
+        },
+        {
+            "name" : "facebook",
+            "title" : "facebook User Info",
+            "schema" : {
+                "title" : "Facebook",
+                "type" : "object",
+                "viewable" : true,
+                "properties" : {
+                    "user" : {
+                        "viewable" : true,
+                        "searchable" : false,
+                        "type" : "relationship",
+                        "reverseRelationship" : true,
+                        "reversePropertyName" : "idps",
+                        "validate" : true,
+                        "properties" : {
+                            "_ref" : {
+                                "type" : "string"
+                            },
+                            "_refProperties" : {
+                                "type" : "object",
+                                "properties" : { }
+                            }
+                        },
+                        "resourceCollection" : [
+                            {
+                                "path" : "managed/user",
+                                "label" : "User",
+                                "query" : {
+                                    "queryFilter" : "true",
+                                    "fields" : [
+                                        "userName"
+                                    ],
+                                    "sortKeys" : [
+                                        "userName"
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "id" : {
+                        "title" : "ID",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    },
+                    "name" : {
+                        "title" : "Name",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    },
+                    "first_name" : {
+                        "title" : "First Name",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    },
+                    "last_name" : {
+                        "title" : "Last Name",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    },
+                    "email" : {
+                        "title" : "Email Address",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    },
+                    "locale" : {
+                        "title" : "Locale Code",
+                        "viewable" : true,
+                        "type" : "string",
+                        "searchable" : true
+                    }
+                },
+                "order" : [
+                    "id",
+                    "name",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "locale",
+                    "user"
+                ],
+                "id" : "http://jsonschema.net",
+                "$schema" : "http://json-schema.org/draft-03/schema",
+                "required" : [ ]
             }
         }
     ]

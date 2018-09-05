@@ -1,6 +1,6 @@
 {
     "configuration" : {
-        "selfRegistration" : false,
+        "selfRegistration" : true,
         "passwordReset" : false,
         "forgotUsername" : false,
         "lang" : "en",
@@ -23,6 +23,9 @@
                 "iconPath" : "images/notifications/error.png"
             }
         },
-        "defaultNotificationType" : "info"
+        "defaultNotificationType" : "info",
+        "kbaDefinitionEnabled" : true,
+        "kbaEnabled" : true,
+        "logoutUrl" : ""
     }
 }
