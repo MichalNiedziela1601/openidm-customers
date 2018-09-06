@@ -92,17 +92,17 @@
         "required" : [ ]
     },
     "enabled" : true,
-    "client_id" : "1881252351939217",
+    "client_id" : "732299370459850",
     "client_secret" : {
         "$crypto" : {
             "type" : "x-simple-encryption",
             "value" : {
                 "cipher" : "AES/CBC/PKCS5Padding",
-                "salt" : "8V6ZdKB9OKdcs/x2wnC8fQ==",
-                "data" : "7Wpg13KXbCmLlBIXFSUeLyHVCRwDMOBq7ujptuiZAhP1ZDOKT90MP4bPmnomA/v4",
-                "iv" : "Iyo8zcfTNBLdKXNUEp8lNQ==",
+                "salt" : "yIwwy6lgG90Xw2R+Ajxb1g==",
+                "data" : "YUN3Mt2rjDIG55V8Et4jdjFbzljmOTLn5+kd0yL/G/r6DCD+PwFn3AhsVgOtK2gO",
+                "iv" : "B/GfQCV2g7bhmONPl0xAcQ==",
                 "key" : "openidm-sym-default",
-                "mac" : "kMkzKXuSQNG2oKr17DdGyg=="
+                "mac" : "GDv/7AZ2Quv8N8y3xUYOZg=="
             }
         }
     },

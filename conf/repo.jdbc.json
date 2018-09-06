@@ -71,6 +71,9 @@
                     },
                     "/accountStatus" : {
                         "searchable" : true
+                    },
+                    "/birthday" : {
+                        "searchable" : true
                     }
                 }
             },

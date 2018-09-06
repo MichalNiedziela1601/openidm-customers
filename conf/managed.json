@@ -679,27 +679,36 @@
                         "pattern" : "",
                         "type" : "object",
                         "properties" : {
+                            "marketing" : {
+                                "description" : "Send me marketing special offers and services",
+                                "type" : "boolean"
+                            },
                             "updates" : {
                                 "description" : "Send me news and updates",
                                 "type" : "boolean"
                             },
-                            "marketing" : {
-                                "description" : "Send me special offers and services",
+                            "birthdayClub" : {
+                                "description" : "Receive special offers on your birtday",
                                 "type" : "boolean"
                             }
                         },
                         "required" : [ ],
                         "order" : [
+                            "marketing",
                             "updates",
-                            "marketing"
+                            "birthdayClub"
                         ]
                     },
                     "idps" : {
+                        "description" : "",
                         "title" : "Identity Providers",
                         "viewable" : true,
                         "searchable" : false,
                         "userEditable" : false,
+                        "policies" : [ ],
                         "returnByDefault" : false,
+                        "minLength" : null,
+                        "pattern" : "",
                         "type" : "array",
                         "items" : {
                             "type" : "relationship",
@@ -752,6 +761,23 @@
                                 }
                             ]
                         }
+                    },
+                    "birthday" : {
+                        "description" : "Enter your birthday to reveice specialoffers on your birthday",
+                        "title" : "Birthday",
+                        "viewable" : true,
+                        "searchable" : true,
+                        "userEditable" : true,
+                        "policies" : [
+                            {
+                                "policyId" : "valid-date",
+                                "params" : { }
+                            }
+                        ],
+                        "returnByDefault" : false,
+                        "minLength" : null,
+                        "pattern" : "",
+                        "type" : "string"
                     }
                 },
                 "required" : [
@@ -784,7 +810,8 @@
                     "lastSync",
                     "kbaInfo",
                     "preferences",
-                    "idps"
+                    "idps",
+                    "birthday"
                 ]
             }
         },
